@@ -1,3 +1,4 @@
+-- Adminer 4.8.1 MySQL 5.5.5-10.3.32-MariaDB-1:10.3.32+maria~focal dump
 
 SET NAMES utf8;
 SET time_zone = '+00:00';
@@ -8,10 +9,10 @@ SET NAMES utf8mb4;
 
 CREATE TABLE `articles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` text CHARACTER SET utf8mb4 DEFAULT NULL,
-  `content` text CHARACTER SET utf8mb4 DEFAULT NULL,
+  `title` text DEFAULT NULL,
+  `content` text DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `articles` (`id`, `title`, `content`) VALUES
 (1,	'Майбутнє освіти: онлайн проти традиційного навчання',	'Дебати між онлайн і традиційними моделями навчання посилились останніми роками, особливо з ростом цифрових технологій...'),
@@ -20,12 +21,12 @@ INSERT INTO `articles` (`id`, `title`, `content`) VALUES
 
 CREATE TABLE `authors` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(255) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `content` text CHARACTER SET utf8mb4 DEFAULT NULL,
+  `username` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
+  `email` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
+  `content` text DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `authors` (`id`, `username`, `email`, `password`, `content`) VALUES
 (1,	'tsvetotsek',	'###############@gmail.com',	'password123',	'Письменник, спеціалізується на технологіях, культурі та політиці. '),
@@ -48,16 +49,16 @@ INSERT INTO `categories` (`id`, `name`) VALUES
 
 CREATE TABLE `comments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `new_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `content` text CHARACTER SET utf8mb4 NOT NULL,
+  `new_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `content` text DEFAULT NULL,
   `creat_at` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `new_id` (`new_id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`new_id`) REFERENCES `news` (`id`),
   CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `comments` (`id`, `new_id`, `user_id`, `content`, `creat_at`) VALUES
 (7,	1,	1,	'Цікава стаття! Я вважаю, що онлайн навчання дійсно має великі переваги...',	1699323000),
@@ -82,7 +83,7 @@ CREATE TABLE `news` (
   CONSTRAINT `news_ibfk_3` FOREIGN KEY (`author`) REFERENCES `authors` (`id`),
   CONSTRAINT `news_ibfk_4` FOREIGN KEY (`article`) REFERENCES `articles` (`id`),
   CONSTRAINT `news_ibfk_5` FOREIGN KEY (`category`) REFERENCES `categories` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `news` (`id`, `category`, `article`, `author`, `pudlic_at`) VALUES
 (1,	5,	1,	1,	'2024-11-07 22:05:11'),
@@ -93,7 +94,7 @@ CREATE TABLE `ratings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `new_id` int(11) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
-  `ip_address` varchar(45) DEFAULT NULL,
+  `ip_address` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
   `rating` tinyint(3) unsigned NOT NULL CHECK (`rating` between 1 and 5),
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_user_article` (`user_id`,`new_id`),
@@ -101,7 +102,7 @@ CREATE TABLE `ratings` (
   KEY `user_id` (`user_id`),
   CONSTRAINT `ratings_ibfk_1` FOREIGN KEY (`new_id`) REFERENCES `news` (`id`),
   CONSTRAINT `ratings_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `ratings` (`id`, `new_id`, `user_id`, `ip_address`, `rating`) VALUES
 (10,	1,	1,	'192.168.1.1',	5),
@@ -116,11 +117,11 @@ INSERT INTO `ratings` (`id`, `new_id`, `user_id`, `ip_address`, `rating`) VALUES
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(255) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
+  `username` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
+  `email` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
 (1,	'sky_fox91',	'sky.fox91@example.com',	'password123'),
@@ -129,4 +130,4 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
 (4,	'pixel_dreamer77',	'pixel.dreamer77@example.com',	'mriyapass'),
 (5,	'shadow_hawk88',	'shadow.hawk88@example.com',	'viter789');
 
--- 2024-11-07 22:58:16
+-- 2024-11-08 07:52:59
