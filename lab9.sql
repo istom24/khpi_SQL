@@ -1,5 +1,3 @@
--- Adminer 4.8.1 MySQL 5.5.5-10.3.32-MariaDB-1:10.3.32+maria~focal dump
-
 SET NAMES utf8;
 SET time_zone = '+00:00';
 SET foreign_key_checks = 0;
@@ -175,5 +173,3 @@ INSERT INTO `usertasks` (`id`, `task_id`, `user_id`) VALUES
 (8,	8,	5),
 (9,	9,	5),
 (10,	10,	6);
-
--- 2024-11-09 22:56:11
