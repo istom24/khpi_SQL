@@ -64,8 +64,8 @@ INSERT INTO `projects` (`id`, `name`, `description`, `created_at`, `user_id`) VA
 
 CREATE TABLE `projectusers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) DEFAULT NULL,
-  `project_id` int(11) DEFAULT NULL,
+  `user_id` int(11),
+  `project_id` int(11),
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `project_id` (`project_id`),
@@ -153,8 +153,8 @@ INSERT INTO `users` (`id`, `member_id`, `role_id`) VALUES
 
 CREATE TABLE `usertasks` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `task_id` int(11) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
+  `task_id` int(11),
+  `user_id` int(11),
   PRIMARY KEY (`id`),
   KEY `task_id` (`task_id`),
   KEY `user_id` (`user_id`),
