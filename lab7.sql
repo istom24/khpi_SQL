@@ -97,7 +97,7 @@ CREATE TABLE `ratings` (
   `ip_address` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
   `rating` tinyint(3) unsigned NOT NULL CHECK (`rating` between 1 and 5),
   PRIMARY KEY (`id`),
-  UNIQUE KEY `unique_user_article` (`user_id`,`new_id`),
+  UNIQUE KEY `unique_user_article` (`ip_address`,`new_id`),
   KEY `new_id` (`new_id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `ratings_ibfk_1` FOREIGN KEY (`new_id`) REFERENCES `news` (`id`),
